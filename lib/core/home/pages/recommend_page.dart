@@ -152,7 +152,7 @@ class _RecommendPageState extends State<RecommendPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Container(
-      margin: EdgeInsets.only(left: 12, right: 12),
+    //  margin: EdgeInsets.only(left: 12, right: 12),
       child: new ListView(
         children: <Widget>[
           // 搜索栏
@@ -207,17 +207,47 @@ class _RecommendPageState extends State<RecommendPage> {
 
           // 横条广告
           AdvertisingBoardLabelWidget(),
+          
+          Container(
+            color: Color.fromARGB(255, 240, 243, 246),
+            height: 12,
+            width: MediaQuery.of(context).size.width,
+
+
+          ),
+        
 
           //  个性推荐
-          ProductGridViewWidget(),
+          Container(
+
+            margin: EdgeInsets.only(left: 12, right: 12),
+            child: ProductGridViewWidget(),
+
+          ),
+
+
+
 
           // 系统推荐
-          new Column(
-            children: _systemRecommendProductWidgets,
+
+          Container(
+
+            margin: EdgeInsets.only(left: 12, right: 12),
+            child: new Column(
+              children: _systemRecommendProductWidgets,
+            ),
+
           ),
 
           // 精品推荐
-          _boutiqueProductsRecommendWidget,
+
+          Container(
+
+            margin: EdgeInsets.only(left: 12, right: 12),
+            child:
+               _boutiqueProductsRecommendWidget,
+            
+          ),
         ],
       ),
     );
