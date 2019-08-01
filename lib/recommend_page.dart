@@ -5,6 +5,8 @@ import 'const_sets.dart';
 import 'product_cell.dart';
 import 'products_recommended_widget.dart';
 import 'product_detail_page.dart';
+import 'dart:math';
+import 'dart:async';
 
 class TabBuild {
   final String _title;
@@ -48,8 +50,10 @@ class ReCommendPage extends StatefulWidget {
 }
 
 class _ReCommendPageState extends State<ReCommendPage>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   TabController _tabController;
+  AnimationController _refreshAnimationController;
+
   List<Tab> _tabs;
   List<Widget> _chiren;
   List<Widget> _recommendItems;
@@ -125,7 +129,33 @@ class _ReCommendPageState extends State<ReCommendPage>
                 }))
             .toList(),
         "精品");
+
+    _refreshAnimationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+
+    _refreshAnimationController.addListener(() {
+      setState(() {});
+    });
+
   }
+
+  void startRefresh() async {
+
+
+    _refreshAnimationController.forward();
+
+  }
+
+
+  void changeRefreshState() {
+    startRefresh();
+    new Timer(Duration(seconds: 1), () {
+      _refreshAnimationController.reset();
+      changeRecommendItems();
+    });
+
+  }
+
 
   List<Widget> makeProductWidgets() {
     return _products
@@ -153,7 +183,6 @@ class _ReCommendPageState extends State<ReCommendPage>
     return new Container(
       margin: EdgeInsets.only(left: 12, right: 12),
       child: new ListView(
-
         children: <Widget>[
           // 搜索栏
 
@@ -263,8 +292,13 @@ class _ReCommendPageState extends State<ReCommendPage>
             addRepaintBoundaries: false),
         new Center(
             child: new FlatButton.icon(
-          onPressed: changeRecommendItems,
-          icon: Icon(Icons.refresh),
+          onPressed: changeRefreshState,
+          icon: Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.identity()
+              ..rotateZ(_refreshAnimationController.value * pi * 2),
+            child: Icon(Icons.refresh),
+          ),
           label: Text("换一换"),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -311,5 +345,12 @@ class _ReCommendPageState extends State<ReCommendPage>
     setState(() {
       _recommendItems = _recommendItems.reversed.toList();
     });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _tabController.dispose();
   }
 }
