@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:banner_view/banner_view.dart';
-import 'const_sets.dart';
+import 'package:ximalaya_demo/const_sets.dart';
 
 const String ruoYeZhiQiuDescription = """
 角色名: 若叶知秋 ----> 牧神女婿

@@ -21,23 +21,18 @@ class ProductInfo {
       this.listenCount, this.episodeNumber);
 }
 
-class ProductCellModel {
+
+class ProductCell extends StatelessWidget {
   ProductInfo product;
 
   TapCallBack onTap;
   TapCallBack onDelete;
 
-  ProductCellModel(this.product, this.onTap, this.onDelete);
-}
-
-class ProductCell extends StatelessWidget {
-  ProductCellModel model;
-
-  ProductCell(this.model);
+  ProductCell(this.product, this.onTap, this.onDelete);
 
   Widget makeTitleWidget() {
-    if (model.product.state == ProductState.process) {
-      return new Text(model.product.title);
+    if (product.state == ProductState.process) {
+      return new Text(product.title);
     } else {
       return RichText(
           text: new TextSpan(
@@ -45,7 +40,7 @@ class ProductCell extends StatelessWidget {
               style: TextStyle(color: Colors.yellow[600], fontSize: 16),
               children: [
             new TextSpan(
-              text: model.product.title,
+              text: product.title,
               style: TextStyle(color: Colors.black, fontSize: 14),
             )
           ]));
@@ -64,12 +59,12 @@ class ProductCell extends StatelessWidget {
 
     return new GestureDetector(
       onTap: () {
-        model.onTap(model.product);
+        onTap(product);
       },
       child: new Row(
         children: <Widget>[
           new Image.asset(
-            model.product.imageName,
+            product.imageName,
             width: 100,
             height: 100,
           ),
@@ -91,7 +86,7 @@ class ProductCell extends StatelessWidget {
                   margin: EdgeInsets.only(top: 12, bottom: 4),
                 ),
                 new Container(
-                  child: new Text(model.product.subTitle),
+                  child: new Text(product.subTitle),
                 ),
                 new Container(
                   margin: EdgeInsets.only(top: 8),
@@ -102,13 +97,13 @@ class ProductCell extends StatelessWidget {
                     //      mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       //  new Flex(direction: Axis.horizontal,),
-                      new Text("${model.product.listenCount}"),
-                      new Text("${model.product.episodeNumber}集"),
+                      new Text("${product.listenCount}"),
+                      new Text("${product.episodeNumber}集"),
                       new IconButton(
                           iconSize: 16,
                           icon: Icon(Icons.remove),
                           onPressed: () {
-                            model.onDelete(model.product);
+                            onDelete(product);
                           }),
                     ],
                   ),

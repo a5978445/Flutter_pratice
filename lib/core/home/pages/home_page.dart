@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'recommend_page.dart';
+import 'package:ximalaya_demo/core/home/pages/recommend_page.dart';
 
 
 
@@ -25,13 +25,13 @@ class _HomePageState extends State<HomePage>
     super.initState();
 
     _children = [
-      ReCommendPage(),
-      ReCommendPage(),
-      ReCommendPage(),
-      ReCommendPage(),
-      ReCommendPage(),
-      ReCommendPage(),
-      ReCommendPage(),
+      RecommendPage(),
+      RecommendPage(),
+      RecommendPage(),
+      RecommendPage(),
+      RecommendPage(),
+      RecommendPage(),
+      RecommendPage(),
 
 
     ];

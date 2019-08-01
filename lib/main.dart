@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
-import 'personal_category_page.dart';
+import 'package:ximalaya_demo/core/home/pages/home_page.dart';
+import 'package:ximalaya_demo/core/home/pages/personal_category_page.dart';
 import 'const_sets.dart';
-import 'appraise_page.dart';
+import 'package:ximalaya_demo/core/home/pages/appraise_page.dart';
 
 void main() => runApp(MyApp());
 

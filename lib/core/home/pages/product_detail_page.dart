@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'product_cell.dart';
+import 'package:ximalaya_demo/core/home/widgets/product_cell.dart';
 
 
 class ProductDetailPage extends StatelessWidget {
