@@ -44,9 +44,9 @@ class RecommendPage extends StatefulWidget {
 class _RecommendPageState extends State<RecommendPage> {
   List<Widget> _categoryItems;
 
-  List<ProductInfo> _products;
-  List<Widget> _productWidgets;
-  ProductsRecommendWidget _productsRecommendWidget;
+  List<ProductInfo> _systemProductsRecommendProducts;
+  List<Widget> _systemRecommendProductWidgets; // 系统推荐
+  ProductsRecommendWidget _boutiqueProductsRecommendWidget; // 精品推荐
 
   List<Widget> _bannerWidgets; // 广告栏展示
 
@@ -84,7 +84,7 @@ class _RecommendPageState extends State<RecommendPage> {
       }),
     ];
 
-    _products = [
+    _systemProductsRecommendProducts = [
       ProductInfo(juanShouTianIconString, "倦收天", "常驻曙山之巅", ProductState.done,
           100000, 99),
       ProductInfo(juanShouTianIconString, "倦收天", "常驻曙山之巅", ProductState.process,
@@ -95,9 +95,9 @@ class _RecommendPageState extends State<RecommendPage> {
           100000, 99),
     ];
 
-    _productWidgets = makeProductWidgets();
+    _systemRecommendProductWidgets = makeProductWidgets();
 
-    _productsRecommendWidget = ProductsRecommendWidget(
+    _boutiqueProductsRecommendWidget = ProductsRecommendWidget(
         [
           ProductInfo(juanShouTianIconString, "倦收天", "常驻曙山之巅",
               ProductState.done, 100000, 99),
@@ -130,7 +130,7 @@ class _RecommendPageState extends State<RecommendPage> {
   }
 
   List<Widget> makeProductWidgets() {
-    return _products
+    return _systemProductsRecommendProducts
         .map((product) => ProductCell(product, (product) {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                 return ProductDetailPage(product);
@@ -143,8 +143,8 @@ class _RecommendPageState extends State<RecommendPage> {
 
   void removeProduct(ProductInfo product) {
     setState(() {
-      _products.remove(product);
-      _productWidgets = makeProductWidgets();
+      _systemProductsRecommendProducts.remove(product);
+      _systemRecommendProductWidgets = makeProductWidgets();
     });
   }
 
@@ -213,11 +213,11 @@ class _RecommendPageState extends State<RecommendPage> {
 
           // 系统推荐
           new Column(
-            children: _productWidgets,
+            children: _systemRecommendProductWidgets,
           ),
 
           // 精品推荐
-          _productsRecommendWidget,
+          _boutiqueProductsRecommendWidget,
         ],
       ),
     );
