@@ -246,7 +246,7 @@ class _RecommendPageState extends State<RecommendPage> {
             margin: EdgeInsets.only(left: 12, right: 12),
             child:
                _boutiqueProductsRecommendWidget,
-            
+
           ),
         ],
       ),

@@ -3,6 +3,7 @@ import 'package:ximalaya_demo/core/home/pages/home_page.dart';
 import 'package:ximalaya_demo/core/home/pages/personal_category_page.dart';
 import 'const_sets.dart';
 import 'package:ximalaya_demo/core/home/pages/appraise_page.dart';
+import 'core/mine/page/my_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -72,15 +73,7 @@ class _RootPagePageState extends State<RootPage>
   }
 }
 
-class MyPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return new Container(
-      color: Colors.red,
-    );
-  }
-}
+
 
 class PlayPage extends StatelessWidget {
   @override
